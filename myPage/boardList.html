@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="https://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate='~{layouts/layout1}'>
+
+<th:block layout:fragment="css">
+    <style th:inline="css">
+
+        <!-- 사용자 css 추가 -->
+        <style>
+            .fieldError {
+                color: #bd2130;
+            }
+.content{
+        text-align:center;
+        padding:50px;
+        }
+        table{
+        border:1px solid;
+        border-radius:20px;
+        border-collapse:collapse;
+        text-align:center;
+        }
+        th,td{
+        border: 1px solid gray;
+        }
+        td{
+        padding: 20px;
+        }
+
+    </style>
+</th:block>
+<th:block layout:fragment="script">
+    <!--사용자 스크립트 추가-->
+    <script th:inline="javascript">
+        $(document).ready(function(){
+            const errorMessage = [[${errorMessage}]];
+            if(errorMessage){
+                alert(errorMessage);
+            }
+        });
+    </script>
+</th:block>
+
+<div layout:fragment="content">
+    <div>
+<p>
+    <a th:href="@{/myPage/myPage_main}" class="btn btn-secondary me-2">MyPage_Main</a>
+    <a th:href="@{/myPage/boardList}" class="btn btn-secondary me-2">My List</a>
+    <a th:href="@{/myPage/comment}" class="btn btn-secondary me-2">My Comment</a>
+</p>
+    </div>
+
+<table class="board_liat_tb">
+    <thead>
+    <tr>
+        <th>no.</th>
+        <th>글 번호</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>작성일</th>
+        <th>조회수</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="board, index: ${boardList}">
+        <td th:text="${index.index + 1}"></td>
+        <td th:text="${board.id}"></td>
+        <td><a th:text="${board.boardTitle}"></a></td>
+        <td th:text="${board.adminBoardId}"></td>
+        <td th:text="*{#temporals.format(board.BoardCreatedTime, 'yyyy-MM-dd')}"></td>
+        <td th:text="${board.boardHits}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</div>
+</html>

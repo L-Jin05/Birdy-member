@@ -69,7 +69,7 @@ public class MemberController {
             System.out.println("------코드 확인 : " + certCode);
             emailService.sendMail(memberEmail, certCode);
             certCodeService.saveCertCode(memberEmail, certCode);
-            System.out.println(memberEmail + "###" + certCode);
+            System.out.println(memberEmail + "확인용 출력" + certCode);
 
             return ResponseEntity.ok().build();
         }else{
@@ -100,7 +100,7 @@ public class MemberController {
 
     @GetMapping("/login/error")
     public String loginError(Model model){
-        System.out.println("에러 컨트로러러======");
+        System.out.println("에러 컨트로러======");
         model.addAttribute("loginErrorMsg", "이메일, 혹은 비밀번호를 확인해주세요.");
         return "/member/memberLoginForm";
     }

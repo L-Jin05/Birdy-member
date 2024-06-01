@@ -49,8 +49,7 @@ public class Member{
         return member;
     }
 
-//    관리자용으로 메서드를 새로 만들어도 되지만, 그럼 관리자용 코드를 또 만들어주어야하니...
-//    편히 갑시다, 우리.
+//    관리자용으로 메서드를 새로 만들어도 되지만, 간단히 여기서 공용으로 사용하기로...
 
     //비밀번호 변경
     public static String updatePwd(String newPwd, PasswordEncoder passwordEncoder){
